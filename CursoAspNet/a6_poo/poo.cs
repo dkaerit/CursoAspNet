@@ -3,6 +3,7 @@
  * Crear al menos una instancia de cada clase (objeto) usando las propiedades y métodos adecuados.
  * */
 
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -102,7 +103,7 @@ namespace CursoAspNet.a6_poo
     //                   TRIA                      //
     //                                             //
     /////////////////////////////////////////////////
-    
+
     /**
      * propiedades color (accesible externamente), lado1, lado2 y lado3 (accesibles externamente), 
      * métodos "Área" (accesible externamente) y "Perímetro" (no accesible externamente).
@@ -116,6 +117,9 @@ namespace CursoAspNet.a6_poo
         // Constructor
         public Triangulo(string color, double lado1, double lado2, double lado3)
         {
+            if(!validar(lado1, lado2, lado3))
+                throw new ArgumentException($"No se puede generar un triángulo con los lados ({lado1},{lado1},{lado1}");
+
             this.color = color;
             this.lado1 = lado1;
             this.lado2 = lado2;
@@ -124,11 +128,18 @@ namespace CursoAspNet.a6_poo
 
         // Métodos
         private double perimetro() { return this.lado1 + this.lado2 + this.lado3; }
-        public double area() 
+        public double area()
         {
             double s = perimetro() / 2; // semiperimetro
             // Teorema de Herón
-            return Math.Sqrt(s * (s - this.lado1) * (s - this.lado2) * (s - this.lado3)); 
+            return Math.Sqrt(s * (s - this.lado1) * (s - this.lado2) * (s - this.lado3));
+        }
+
+        private bool validar(double l1, double l2, double l3) {
+            double maxLado = Math.Max(l1, Math.Max(l2, l3));
+            double sumaLadosMenores = (l1 + l2 + l3) - maxLado;
+
+            return (sumaLadosMenores > maxLado);
         }
     }
 
