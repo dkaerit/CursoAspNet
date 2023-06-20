@@ -8,8 +8,12 @@
 */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CursoAspNet
+namespace CursoAspNet.a5_adivina
 {
     class JuegoAdivinacion
     {
@@ -40,7 +44,7 @@ namespace CursoAspNet
         //                                             //
         /////////////////////////////////////////////////
 
-        public static void Main(string[] args)
+        public static void NotMain(string[] args)
         {
             // mensaje de bienvenida
             Console.WriteLine("Bienvenido al juego de 'Adivina el número'");
