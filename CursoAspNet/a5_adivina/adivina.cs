@@ -44,7 +44,7 @@ namespace CursoAspNet.a5_adivina
         //                                             //
         /////////////////////////////////////////////////
 
-        public static void NotMain(string[] args)
+        public static void Main1(string[] args)
         {
             // mensaje de bienvenida
             Console.WriteLine("Bienvenido al juego de 'Adivina el número'");

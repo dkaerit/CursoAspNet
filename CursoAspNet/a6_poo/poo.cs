@@ -21,7 +21,7 @@ namespace CursoAspNet.a6_poo
     
     internal class Poo
     {
-        public static void Main(string[] args)
+        public static void Main2(string[] args)
         {
             // Instanciación del cuadrado
             double lado;
