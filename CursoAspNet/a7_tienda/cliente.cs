@@ -30,15 +30,20 @@ namespace CursoAspNet.a7_tienda
         //                                             //
         /////////////////////////////////////////////////
         public Cliente() { }
-
         public Cliente(string dni, string nombre, string email, string direccion, string? telefono = null)
         {
             this.dni_ = dni;
+            this.telefono_ = telefono;
             this.Nombre_ = nombre;
             this.Email_ = email;
             this.Direccion_ = direccion;
-            this.telefono_ = telefono;
         }
+
+        /////////////////////////////////////////////////
+        //                                             //
+        //                   METODOS                   //
+        //                                             //
+        /////////////////////////////////////////////////
 
         public void SetValues(string dni, string? telefono = null)
         {

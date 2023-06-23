@@ -14,12 +14,9 @@ namespace CursoAspNet.a7_tienda
         //                                             //
         /////////////////////////////////////////////////
         
-        // atributos privados
         private bool is_confirmed_ = false;
-
-        // atributos publicos
         public Cliente Cliente_ { get; set; }
-        public CarritoCompras carrito_;
+        public CarritoCompras carrito_ { get; set; }
 
         /////////////////////////////////////////////////
         //                                             //

@@ -71,14 +71,12 @@ namespace CursoAspNet.a7_tienda
         {
             Console.WriteLine("Inventario de la tienda:");
             foreach (Producto producto in inventario_)
-            {
                 Console.WriteLine($"- {producto.Nombre_}, Precio: {producto.Precio_}, Stock: {producto.Stock_}");
-            }
         }
 
         private bool VerificarDisponibilidadProductos(Pedido pedido)
         {
-            foreach (var productoCantidad in pedido.carrito_.productosCantidad_) // Dictionary<Producto, int>
+            foreach (var productoCantidad in pedido.carrito_.productosCantidad_) 
             {
                 // producto del pedido y cantidad del pedido
                 Producto productoPedido = productoCantidad.Key;
