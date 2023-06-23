@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CursoAspNet.a7_tienda
 {
-    internal class Producto
+    internal class Pedido
     {
         /////////////////////////////////////////////////
         //                                             //
@@ -14,27 +14,28 @@ namespace CursoAspNet.a7_tienda
         //                                             //
         /////////////////////////////////////////////////
         
-        // private: Codigo 
-        private static int instancias_ = 0; // cantidad de objetos instanciados
-        private string codigo_;
+        // atributos privados
+        public CarritoCompras carrito_;
+        bool is_confirmed_ = false;
 
-        // public: Nombre, Precio y Stock
-        public string nombre_ { get; set; }
-        public decimal precio_ { get; set; }
-        public int stock_ { get; set; }
+        // atributos publicos
+        public Cliente cliente_ { get; set; }
 
         /////////////////////////////////////////////////
         //                                             //
-        //                CONSTRUCTORES                //
+        //                CONSTRUCTIRES                //
         //                                             //
         /////////////////////////////////////////////////
         
-        public Producto(string nombre, decimal precio, int stock)
+        public Pedido(Producto p, Cliente c) {
+            this.carrito_ = new CarritoCompras(p,1,c);
+            this.cliente_ = c;
+        }
+
+        public Pedido(CarritoCompras cc)
         {
-            this.codigo_ = GenerarCodigo();
-            this.nombre_ = nombre;
-            this.precio_ = precio;
-            this.stock_ = stock;
+            this.carrito_ = cc;
+            this.cliente_ = cc.cliente_;
         }
 
         /////////////////////////////////////////////////
@@ -42,11 +43,23 @@ namespace CursoAspNet.a7_tienda
         //                   METODOS                   //
         //                                             //
         /////////////////////////////////////////////////
+        
 
-        private string GenerarCodigo()
+        public decimal CalcularTotal() {
+            return carrito_.CalcularTotal();
+        }
+
+
+        public void ConfirmarPedido() {
+            is_confirmed_ = true;
+        }
+
+        public void MostrarPedido()
         {
-            instancias_++;
-            return "PROD" + instancias_.ToString("D4");
+            Console.WriteLine($"Pedido del cliente {cliente_.nombre_}:");
+            Console.WriteLine(carrito_.MostrarCarrito());
+            Console.WriteLine($"Total: {CalcularTotal()}");
+            Console.WriteLine();
         }
     }
 }
