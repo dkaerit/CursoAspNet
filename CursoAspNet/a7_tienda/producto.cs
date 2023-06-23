@@ -16,12 +16,12 @@ namespace CursoAspNet.a7_tienda
         
         // private: Codigo 
         private static int instancias_ = 0; // cantidad de objetos instanciados
-        private string codigo_;
+        private readonly string codigo_;
 
         // public: Nombre, Precio y Stock
-        public string nombre_ { get; set; }
-        public decimal precio_ { get; set; }
-        public int stock_ { get; set; }
+        public string Nombre_ { get; set; }
+        public decimal Precio_ { get; set; }
+        public int Stock_ { get; set; }
 
         /////////////////////////////////////////////////
         //                                             //
@@ -32,9 +32,9 @@ namespace CursoAspNet.a7_tienda
         public Producto(string nombre, decimal precio, int stock)
         {
             this.codigo_ = GenerarCodigo();
-            this.nombre_ = nombre;
-            this.precio_ = precio;
-            this.stock_ = stock;
+            this.Nombre_ = nombre;
+            this.Precio_ = precio;
+            this.Stock_ = stock;
         }
 
         /////////////////////////////////////////////////
@@ -43,7 +43,7 @@ namespace CursoAspNet.a7_tienda
         //                                             //
         /////////////////////////////////////////////////
 
-        private string GenerarCodigo()
+        private static string GenerarCodigo()
         {
             instancias_++;
             return "PROD" + instancias_.ToString("D4");

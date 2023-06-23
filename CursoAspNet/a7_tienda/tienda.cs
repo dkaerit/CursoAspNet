@@ -14,10 +14,9 @@ namespace CursoAspNet.a7_tienda
         //                                             //
         /////////////////////////////////////////////////
 
-        private string nombre_;
-        private List<Pedido> pedidos_ = new List<Pedido>();
-
-        public List<Producto> inventario_ = new List<Producto>();
+        private readonly string nombre_;
+        private readonly List<Pedido> pedidos_ = new();
+        public List<Producto> inventario_ = new();
 
         /////////////////////////////////////////////////
         //                                             //
@@ -49,12 +48,16 @@ namespace CursoAspNet.a7_tienda
         }
 
         // Realiza un pedido de productos (devuelve el precio total)
-        public decimal RealizarPedido(Pedido pedido)
-        {
-            pedidos_.Add(pedido);
-            pedido.ConfirmarPedido();
-            pedido.MostrarPedido();
-            return pedido.CalcularTotal();
+        public decimal RealizarPedido(Pedido pedido) {
+        
+            if(VerificarDisponibilidadProductos(pedido)) {
+                pedidos_.Add(pedido);
+                pedido.ConfirmarPedido();
+                pedido.MostrarPedido();
+                return pedido.CalcularTotal();
+            }
+
+            return 0.00m;
         }
 
         // Obtiene la cantidad de productos en inventario
@@ -69,7 +72,7 @@ namespace CursoAspNet.a7_tienda
             Console.WriteLine("Inventario de la tienda:");
             foreach (Producto producto in inventario_)
             {
-                Console.WriteLine($"- {producto.nombre_}, Precio: {producto.precio_}, Stock: {producto.stock_}");
+                Console.WriteLine($"- {producto.Nombre_}, Precio: {producto.Precio_}, Stock: {producto.Stock_}");
             }
         }
 
@@ -82,14 +85,14 @@ namespace CursoAspNet.a7_tienda
                 int cantidadPedido = productoCantidad.Value;
 
                 // producto de la tienda
-                Producto? productoTienda = inventario_.Find(p => p.nombre_ == productoPedido.nombre_);
+                Producto? productoTienda = inventario_.Find(p => p.Nombre_ == productoPedido.Nombre_);
 
                 // si producto no existe en inventario_
                 if (productoTienda == null)
                     return false;
                 
                 // si el stock del producto en tienda es menor que la cantidad que se está pidiendo
-                if (productoTienda.stock_ < cantidadPedido)
+                if (productoTienda.Stock_ < cantidadPedido)
                     return false;
             }
 
@@ -111,7 +114,7 @@ namespace CursoAspNet.a7_tienda
             foreach (Pedido pedido in pedidos_)
             {
                 Cliente cliente = pedido.carrito_.cliente_;
-                Console.WriteLine($"Cliente: {cliente.nombre_}");
+                Console.WriteLine($"Cliente: {cliente.Nombre_}");
                 Console.WriteLine(pedido.carrito_.MostrarCarrito());
                 Console.WriteLine($"Total: {pedido.CalcularTotal()}");
                 Console.WriteLine();

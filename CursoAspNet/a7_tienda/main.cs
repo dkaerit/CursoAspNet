@@ -9,19 +9,31 @@ namespace CursoAspNet.a7_tienda
     internal class MainClass {
         public static void Main(string[] args)
         {
-            Cliente juan = new Cliente("00000000A","Juan", "jglez@gmail.com", "Calle A, Nolandia");
-            Cliente maria = new Cliente("11111111B", "María", "mrez@gmail.com", "Calle B, Nolandia", 633001122);
-            Cliente pedro = new Cliente("22222222C", "Pedro", "palvez@gmail.com", "Calle C, Nolandia");
+            Cliente juan = new("00000000A","Juan", "jglez@gmail.com", "Calle A, Nolandia");
+            Cliente maria = new("11111111B", "María", "mrez@gmail.com", "Calle B, Nolandia", "633001122");
+            Cliente pedro = new("22222222C", "Pedro", "palvez@gmail.com", "Calle C, Nolandia");
+            Cliente ernesto = new();
+            ernesto.SetValues("33333333D", "611001122");
+            ernesto.Nombre_ = "Ernesto";
+            ernesto.Email_ = "ergrez@gmail.com";
+            ernesto.Direccion_ = "Calle D, Nolandia";
+
+            // info clientes
+            Console.WriteLine("## ------ Clientes ------ : \n");
+            Console.WriteLine(juan.ToString() + "\n");
+            Console.WriteLine(maria.ToString() + "\n");
+            Console.WriteLine(pedro.ToString() + "\n");
+            Console.WriteLine(ernesto.ToString() + "\n");
 
             // Creación de las tiendas
-            Tienda fruteria = new Tienda("Frutería Rosina");
-            Tienda muebles = new Tienda("Muebles Manolo");
+            Tienda fruteria = new("Frutería Rosina");
+            Tienda muebles = new("Muebles Manolo");
 
             // Productos
-            Producto manzanasStock = new Producto("Manzana", 0.5m, 20);// manzanas x20
-            Producto perasStock = new Producto("Pera", 0.6m, 15); // Peras x15
-            Producto sillasStock = new Producto("Silla", 37.39m, 25); // Sillas x25
-            Producto armarioStock = new Producto("Armario", 88.99m, 50); // Armarios x50
+            Producto manzanasStock = new("Manzana", 0.5m, 20);// manzanas x20
+            Producto perasStock = new("Pera", 0.6m, 15); // Peras x15
+            Producto sillasStock = new("Silla", 37.39m, 25); // Sillas x25
+            Producto armarioStock = new("Armario", 88.99m, 50); // Armarios x50
 
 
             // Agregar productos al inventario de las tiendas
@@ -36,9 +48,9 @@ namespace CursoAspNet.a7_tienda
             muebles.MostrarInformacion();
 
             // Carritos
-            CarritoCompras carritoJuan = new CarritoCompras(juan);
-            CarritoCompras carritoMaria = new CarritoCompras(maria);
-            CarritoCompras carritoPedro = new CarritoCompras(pedro);
+            CarritoCompras carritoJuan = new(juan);
+            CarritoCompras carritoMaria = new(maria);
+            CarritoCompras carritoPedro = new(pedro);
 
             // Configurar carritos
             Console.WriteLine("## ------ Pedidos ------ : \n");
@@ -50,9 +62,9 @@ namespace CursoAspNet.a7_tienda
             carritoPedro.AgregarProducto(sillasStock, 4); // pedro: +4 sillas
 
             // Hacer Pedidos
-            fruteria.RealizarPedido(carritoJuan.formatoPedido());
-            fruteria.RealizarPedido(carritoMaria.formatoPedido());
-            muebles.RealizarPedido(carritoPedro.formatoPedido());
+            fruteria.RealizarPedido(carritoJuan.FormatoPedido());
+            fruteria.RealizarPedido(carritoMaria.FormatoPedido());
+            muebles.RealizarPedido(carritoPedro.FormatoPedido());
         }
     }
 }

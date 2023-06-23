@@ -29,7 +29,7 @@ namespace CursoAspNet.a5_adivina
         private static int _dificultad = 0;
 
         enum Dificultad : int { Facil, Intermedio, Dificil, Extremo }
-        private readonly static Dictionary<int, double> _dificultades = new Dictionary<int, double>()
+        private readonly static Dictionary<int, double> _dificultades = new()
         {
 
             { (int)Dificultad.Facil, 0.50 },     // 50%
@@ -52,8 +52,8 @@ namespace CursoAspNet.a5_adivina
 
             do
             {
-                crear_intervalo(); // pide 2 numeros y setea un intervalo como atributo
-                jugar_adivinanza(generar_numero(), generar_vidas()); // comienzo del juego
+                Crear_intervalo(); // pide 2 numeros y setea un intervalo como atributo
+                Jugar_adivinanza(Generar_numero(), Generar_vidas()); // comienzo del juego
                 Console.Write("\n¿Deseas seguir jugando?  (yes/no): ");
             } while (Console.ReadLine() == "yes");
         }
@@ -69,16 +69,17 @@ namespace CursoAspNet.a5_adivina
         * @return Tuple<int,int>, intervalo n1,n2
         */
 
-        static void crear_intervalo()
+        static void Crear_intervalo()
         {
-            int n1, n2;
+            
+            
 
             Console.Write(" --> n1: "); // solicitar n1
-            if (!int.TryParse(Console.ReadLine(), out n1))
+            if (!int.TryParse(Console.ReadLine(), out int n1))
                 throw new ArgumentException($"El valor n1({n1}) no es correcto.");
 
             Console.Write(" --> n2: "); // solicitar n2
-            if (!int.TryParse(Console.ReadLine(), out n2))
+            if (!int.TryParse(Console.ReadLine(), out int n2))
                 throw new ArgumentException($"El valor n2({n2}) no es correcto.");
 
 
@@ -91,7 +92,7 @@ namespace CursoAspNet.a5_adivina
          * @brief, Método que calcula un numero aleatorio dentro del intervalo
          * @return int, numero aleatorio generado
          */
-        static int generar_numero()
+        static int Generar_numero()
         {
             return new Random().Next(_tupla.Item1, _tupla.Item2 + 1);
         }
@@ -102,7 +103,7 @@ namespace CursoAspNet.a5_adivina
          * @return double, porcentaje segun la dificultad elegida
          */
 
-        static double elegir_dificultad()
+        static double Elegir_dificultad()
         {
             Console.WriteLine("\nElije la dificultad:\n");
 
@@ -118,7 +119,7 @@ namespace CursoAspNet.a5_adivina
             do
             {
                 Console.Write("\n --> dificultad: "); // mensaje petición
-                int.TryParse(Console.ReadLine(), out _dificultad); // Pide opción
+                _ = int.TryParse(Console.ReadLine(), out _dificultad); // Pide opción
 
                 dificultad_valida = _dificultades.ContainsKey(_dificultad);
                 if (!dificultad_valida) // Mensaje de aviso no valido
@@ -134,9 +135,9 @@ namespace CursoAspNet.a5_adivina
          * @return int, cantidad de vidas iniciales
          */
 
-        static int generar_vidas()
+        static int Generar_vidas()
         {
-            double porcentaje = elegir_dificultad();
+            double porcentaje = Elegir_dificultad();
             int cantidad = Math.Abs(_tupla.Item1 - _tupla.Item2);
             return Math.Max(1, (int)Math.Round(cantidad * porcentaje));
             // si el redondeo fuera 0, el max sería 1
@@ -148,7 +149,7 @@ namespace CursoAspNet.a5_adivina
          * @param vidas, cantidad de vidas restantes
          */
 
-        static void jugar_adivinanza(int objetivo, int vidas)
+        static void Jugar_adivinanza(int objetivo, int vidas)
         {
             int candidato;
             Console.Write($"[Tienes {vidas} intentos]\n");
@@ -157,7 +158,7 @@ namespace CursoAspNet.a5_adivina
             do
             {
                 Console.Write($"\n¿Cuál crees que es el número? ({inf}...{sup}): ");
-                int.TryParse(Console.ReadLine(), out candidato);
+                _ = int.TryParse(Console.ReadLine(), out candidato);
                 Console.Write("\n");
 
                 if (candidato > objetivo)

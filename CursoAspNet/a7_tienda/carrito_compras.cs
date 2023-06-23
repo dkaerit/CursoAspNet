@@ -15,7 +15,7 @@ namespace CursoAspNet.a7_tienda
         /////////////////////////////////////////////////
         
         // atributos
-        public Dictionary<Producto, int> productosCantidad_ = new Dictionary<Producto, int>(); // <producto, cantidad>
+        public Dictionary<Producto, int> productosCantidad_ = new(); // <producto, cantidad>
         public Cliente cliente_;
 
         /////////////////////////////////////////////////
@@ -66,7 +66,7 @@ namespace CursoAspNet.a7_tienda
                 productosCantidad_.Clear();
         }
 
-        public Pedido formatoPedido() {
+        public Pedido FormatoPedido() {
             return new Pedido(this);
         }
 
@@ -79,7 +79,7 @@ namespace CursoAspNet.a7_tienda
             {
                 Producto producto = productoCantidad.Key;
                 int cantidad = productoCantidad.Value;
-                total += producto.precio_ * cantidad;
+                total += producto.Precio_ * cantidad;
             }
 
             return total;
@@ -94,7 +94,7 @@ namespace CursoAspNet.a7_tienda
             {
                 Producto producto = productoCantidad.Key;
                 int cantidad = productoCantidad.Value;
-                resultado += $"- {producto.nombre_}, Cantidad: {cantidad}, Precio: {producto.precio_}\n";
+                resultado += $"- {producto.Nombre_}, Cantidad: {cantidad}, Precio: {producto.Precio_}\n";
             }
 
             return resultado;

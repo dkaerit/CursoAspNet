@@ -15,27 +15,27 @@ namespace CursoAspNet.a7_tienda
         /////////////////////////////////////////////////
         
         // atributos privados
-        public CarritoCompras carrito_;
-        bool is_confirmed_ = false;
+        private bool is_confirmed_ = false;
 
         // atributos publicos
-        public Cliente cliente_ { get; set; }
+        public Cliente Cliente_ { get; set; }
+        public CarritoCompras carrito_;
 
         /////////////////////////////////////////////////
         //                                             //
         //                CONSTRUCTIRES                //
         //                                             //
         /////////////////////////////////////////////////
-        
+
         public Pedido(Producto p, Cliente c) {
             this.carrito_ = new CarritoCompras(p,1,c);
-            this.cliente_ = c;
+            this.Cliente_ = c;
         }
 
         public Pedido(CarritoCompras cc)
         {
             this.carrito_ = cc;
-            this.cliente_ = cc.cliente_;
+            this.Cliente_ = cc.cliente_;
         }
 
         /////////////////////////////////////////////////
@@ -56,7 +56,7 @@ namespace CursoAspNet.a7_tienda
 
         public void MostrarPedido()
         {
-            Console.WriteLine($"Pedido del cliente {cliente_.nombre_}:");
+            Console.WriteLine($"Pedido del cliente {Cliente_.Nombre_}:");
             Console.WriteLine(carrito_.MostrarCarrito());
             Console.WriteLine($"Total: {CalcularTotal()}");
             Console.WriteLine();
