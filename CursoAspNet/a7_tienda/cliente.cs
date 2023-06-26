@@ -25,8 +25,8 @@ namespace CursoAspNet.a7_tienda
         public string? Direccion_;
 
         // getters y setters
-        public string? Telefono_ { get => telefono_; }
-        public string? Dni_ { get => dni_; }
+        public string? Telefono_ { get => telefono_; } // telefono_ legible pero no modificable fuera
+        public string? Dni_ { get => dni_; } // dni_ legible pero no modificable fuera
 
         /////////////////////////////////////////////////
         //                                             //

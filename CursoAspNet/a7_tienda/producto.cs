@@ -24,7 +24,7 @@ namespace CursoAspNet.a7_tienda
         public int Stock_;
 
         // getters y setters
-        public string Codigo_ { get => codigo_; } // getter de lectura para codigo
+        public string Codigo_ { get => codigo_; } // codigo_ legible pero no modificable fuera
 
         /////////////////////////////////////////////////
         //                                             //
