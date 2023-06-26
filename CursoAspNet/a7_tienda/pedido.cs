@@ -14,9 +14,9 @@ namespace CursoAspNet.a7_tienda
         //                                             //
         /////////////////////////////////////////////////
         
-        private bool is_confirmed_ = false;
+        private bool isConfirmed_ = false;
         public Cliente Cliente_ { get; set; }
-        public CarritoCompras carrito_ { get; set; }
+        public CarritoCompras Carrito_ { get; set; }
 
         /////////////////////////////////////////////////
         //                                             //
@@ -25,13 +25,13 @@ namespace CursoAspNet.a7_tienda
         /////////////////////////////////////////////////
 
         public Pedido(Producto p, Cliente c) {
-            this.carrito_ = new CarritoCompras(p,1,c);
+            this.Carrito_ = new CarritoCompras(p,1,c);
             this.Cliente_ = c;
         }
 
         public Pedido(CarritoCompras cc)
         {
-            this.carrito_ = cc;
+            this.Carrito_ = cc;
             this.Cliente_ = cc.cliente_;
         }
 
@@ -43,18 +43,18 @@ namespace CursoAspNet.a7_tienda
         
 
         public decimal CalcularTotal() {
-            return carrito_.CalcularTotal();
+            return Carrito_.CalcularTotal();
         }
 
 
         public void ConfirmarPedido() {
-            is_confirmed_ = true;
+            isConfirmed_ = true;
         }
 
         public void MostrarPedido()
         {
             Console.WriteLine($"Pedido del cliente {Cliente_.Nombre_}:");
-            Console.WriteLine(carrito_.MostrarCarrito());
+            Console.WriteLine(Carrito_.MostrarCarrito());
             Console.WriteLine($"Total: {CalcularTotal()}");
             Console.WriteLine();
         }
