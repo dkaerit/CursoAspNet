@@ -16,13 +16,17 @@ namespace CursoAspNet.a7_tienda
         /////////////////////////////////////////////////
 
         // privados: Telefono y DNI
-        private string? Telefono_;
-        private string? Dni_;
+        private string? telefono_;
+        private string? dni_;
 
         // publicos: Nombre, Email y Dirección
-        public string? Nombre_ { get; set; }
-        public string? Email_ { get; set; }
-        public string? Direccion_ { get; set; }
+        public string? Nombre_;
+        public string? Email_;
+        public string? Direccion_;
+
+        // getters y setters
+        public string? Telefono_ { get => telefono_; }
+        public string? Dni_ { get => dni_; }
 
         /////////////////////////////////////////////////
         //                                             //
@@ -32,8 +36,9 @@ namespace CursoAspNet.a7_tienda
         public Cliente() { }
         public Cliente(string dni, string nombre, string email, string direccion, string? telefono = null)
         {
-            this.Dni_ = dni;
-            this.Telefono_ = telefono;
+            this.dni_ = dni;
+            this.telefono_ = telefono;
+
             this.Nombre_ = nombre;
             this.Email_ = email;
             this.Direccion_ = direccion;
@@ -47,14 +52,14 @@ namespace CursoAspNet.a7_tienda
 
         public void SetValues(string dni, string? telefono = null)
         {
-            this.Dni_ = dni;
-            this.Telefono_ = telefono;
+            this.dni_ = dni;
+            this.telefono_ = telefono;
         }
 
         public override string ToString()
         {
-            string telefono = Telefono_ ?? "N/A";
-            return $"DNI: {Dni_}\nNombre: {Nombre_}\nEmail: {Email_}\nDirección: {Direccion_}\nTeléfono: {telefono}";
+            string telefono = telefono_ ?? "N/A";
+            return $"DNI: {dni_}\nNombre: {Nombre_}\nEmail: {Email_}\nDirección: {Direccion_}\nTeléfono: {telefono}";
         }
 
 

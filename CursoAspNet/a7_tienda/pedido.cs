@@ -15,8 +15,9 @@ namespace CursoAspNet.a7_tienda
         /////////////////////////////////////////////////
         
         private bool isConfirmed_ = false;
-        public Cliente Cliente_ { get; set; }
-        public CarritoCompras Carrito_ { get; set; }
+
+        public Cliente Cliente_;
+        public CarritoCompras Carrito_;
 
         /////////////////////////////////////////////////
         //                                             //

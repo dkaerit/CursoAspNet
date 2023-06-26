@@ -14,9 +14,16 @@ namespace CursoAspNet.a7_tienda
         //                                             //
         /////////////////////////////////////////////////
 
-        private readonly string Nombre_;
-        private readonly List<Pedido> Pedidos_ = new();
+        // privados: nombre_ y pedidos_
+        private readonly string nombre_;
+        private readonly List<Pedido> pedidos_ = new();
+
+        // publicos: Inventario_
         public Dictionary<string, int> Inventario_ = new();
+
+        // getters y setters
+        private string Nombre_ { get => nombre_; }
+        private List<Pedido> Pedidos_ { get => pedidos_; }
 
         /////////////////////////////////////////////////
         //                                             //
@@ -26,7 +33,7 @@ namespace CursoAspNet.a7_tienda
 
         public Tienda(string nombre)
         {
-            this.Nombre_ = nombre;
+            this.nombre_ = nombre;
         }
 
         /////////////////////////////////////////////////
@@ -61,7 +68,7 @@ namespace CursoAspNet.a7_tienda
         // Realiza un pedido de productos (devuelve el precio total)
         public decimal RealizarPedido(Pedido pedido) {
             if (VerificarDisponibilidadProductos(pedido)) {
-                Pedidos_.Add(pedido);
+                pedidos_.Add(pedido);
                 pedido.ConfirmarPedido();
                 pedido.MostrarPedido();
                 return pedido.CalcularTotal();
@@ -112,7 +119,7 @@ namespace CursoAspNet.a7_tienda
         // Muestra la información de la tienda y su inventario
         public void MostrarInformacion()
         {
-            Console.WriteLine($"Tienda: {Nombre_}");
+            Console.WriteLine($"Tienda: {nombre_}");
             MostrarInventario();
             Console.WriteLine();
         }
@@ -120,8 +127,8 @@ namespace CursoAspNet.a7_tienda
         // Muestra los pedidos realizados por los clientes
         public void MostrarPedidosClientes()
         {
-            Console.WriteLine($"Pedidos realizados en la tienda {Nombre_}:");
-            foreach (Pedido pedido in Pedidos_)
+            Console.WriteLine($"Pedidos realizados en la tienda {nombre_}:");
+            foreach (Pedido pedido in pedidos_)
             {
                 Cliente cliente = pedido.Carrito_.cliente_;
                 Console.WriteLine($"Cliente: {cliente.Nombre_}");
