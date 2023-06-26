@@ -59,5 +59,21 @@ namespace CursoAspNet.a7_tienda
             Console.WriteLine($"Total: {CalcularTotal()}");
             Console.WriteLine();
         }
+
+        public void Factura()
+        {
+            if (isConfirmed_)
+            {
+                Console.WriteLine("Factura del pedido:");
+                Console.WriteLine("\n");
+                Console.WriteLine($"Cliente: {Cliente_.Nombre_}");
+                Console.WriteLine($"DNI: {Cliente_.Dni_}");
+                Console.WriteLine($"Dirección de entrega: {Cliente_.Direccion_}");
+                Console.WriteLine(Carrito_.MostrarCarrito());
+                Console.WriteLine($"\nTotal: {CalcularTotal()}");
+            }
+            else
+                Console.WriteLine("El pedido no ha sido confirmado. No se puede generar la factura.");
+        }
     }
 }

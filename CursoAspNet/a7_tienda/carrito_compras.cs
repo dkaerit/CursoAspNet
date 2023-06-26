@@ -87,17 +87,32 @@ namespace CursoAspNet.a7_tienda
 
         public string MostrarCarrito()
         {
-            string resultado = "Productos en el carrito:\n";
+            string resultado = "Carrito de compras:\n";
+            resultado += "------------------------------------------------------\n";
+            resultado += "Cant.".PadRight(9);
+            resultado += "Desc.".PadRight(24);
+            resultado += "P.u.".PadRight(9);
+            resultado += "Importe ($)".PadRight(9);
+            resultado += "\n------------------------------------------------------\n";
 
-            // Mostrar los productos y sus cantidades en el carrito
             foreach (var productoCantidad in ProductosCantidad_)
             {
                 Producto producto = productoCantidad.Key;
                 int cantidad = productoCantidad.Value;
-                resultado += $"- {producto.Nombre_}, Cantidad: {cantidad}, Precio: {producto.Precio_}\n";
+                decimal importe = producto.Precio_ * cantidad;
+
+                string cantidadStr = cantidad.ToString();
+                string descripcion = producto.Nombre_;
+                string precioUnitario = producto.Precio_.ToString();
+                string importeStr = importe.ToString();
+
+                resultado += $"{cantidadStr.PadRight(9)}{descripcion.PadRight(24)}{precioUnitario.PadRight(16)}{importeStr}\n";
             }
+
+            resultado += "----------------------------------------------------\n";
 
             return resultado;
         }
+
     }
 }

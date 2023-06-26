@@ -22,8 +22,8 @@ namespace CursoAspNet.a7_tienda
         public Dictionary<string, int> Inventario_ = new();
 
         // getters y setters
-        private string Nombre_ { get => nombre_; } // nombre_ legible pero no modificable fuera
-        private List<Pedido> Pedidos_ { get => pedidos_; } // pedidos_ legible pero no modificable fuera
+        public string Nombre_ { get => nombre_; } // nombre_ legible pero no modificable fuera
+        public List<Pedido> Pedidos_ { get => pedidos_; } // pedidos_ legible pero no modificable fuera
 
         /////////////////////////////////////////////////
         //                                             //
