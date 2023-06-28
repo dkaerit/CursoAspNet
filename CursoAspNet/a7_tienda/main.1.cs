@@ -9,14 +9,14 @@ namespace CursoAspNet.a7_tienda
     internal class Interactivo
     {
         // Tiendas
-        private static Dictionary<int, Tienda> tiendas = new Dictionary<int, Tienda>()
+        private static readonly Dictionary<int, Tienda> tiendas = new()
         {
             { 1, new Tienda("Frutería Rosina") },
             { 2, new Tienda("Muebles Manolo") }
         };
 
         // Productos
-        private static Dictionary<int, Producto> productos = new Dictionary<int, Producto>()
+        private static readonly Dictionary<int, Producto> productos = new()
         {
             { 1, new Producto("Manzana", 0.5m, 20) },
             { 2, new Producto("Pera", 0.6m, 15) },
@@ -24,7 +24,7 @@ namespace CursoAspNet.a7_tienda
             { 4, new Producto("Armario", 88.99m, 50) }
         };
 
-        public static void exec() {
+        public static void Exec() {
             Console.WriteLine("Bienvenido al modo interactivo.");
 
             // SELECCIONAR TIENDA
@@ -33,7 +33,7 @@ namespace CursoAspNet.a7_tienda
                 Console.WriteLine($"{tienda.Key}. {tienda.Value.Nombre_}");
 
             Console.Write(">> ");
-            int.TryParse(Console.ReadLine(), out int ti);
+            _ = int.TryParse(Console.ReadLine(), out int ti);
             Console.WriteLine("");
             Tienda tiendaEleccion = tiendas[ti];
 
@@ -60,10 +60,10 @@ namespace CursoAspNet.a7_tienda
                     Console.WriteLine($"{producto.Key}. {producto.Value.Nombre_}");
 
                 Console.Write(">> ");
-                int.TryParse(Console.ReadLine(), out int productoSeleccionado);
+                _ = int.TryParse(Console.ReadLine(), out int productoSeleccionado);
 
                 Console.Write("Cantidad: ");
-                int.TryParse(Console.ReadLine(), out int cantidad);
+                _ = int.TryParse(Console.ReadLine(), out int cantidad);
 
                 Producto productoElegido = productos[productoSeleccionado];
                 carrito.AgregarProducto(productoElegido, cantidad);
@@ -71,8 +71,7 @@ namespace CursoAspNet.a7_tienda
                 Console.Write("¿Desea agregar otro producto? (S/N): ");
                 string? respuesta = Console.ReadLine();
 
-                if (respuesta.ToUpper() == "N")
-                    break;
+                if (respuesta?.ToUpper() == "N") break;
             }
 
             // ¿CONFIRMAS?
@@ -80,7 +79,7 @@ namespace CursoAspNet.a7_tienda
             string? confirmacion = Console.ReadLine();
 
             Pedido pedido = carrito.FormatoPedido();
-            if (confirmacion.ToUpper() == "S")
+            if (confirmacion?.ToUpper() == "S")
             {
                 pedido.ConfirmarPedido();
                 tiendaEleccion.RealizarPedido(pedido);

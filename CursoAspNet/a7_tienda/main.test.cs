@@ -8,7 +8,7 @@ namespace CursoAspNet.a7_tienda
 {
     internal class Test
     {
-        public static void exec() {
+        public static void Exec() {
             Cliente juan = new("00000000A", "Juan", "jglez@gmail.com", "Calle A, Nolandia");
             Cliente maria = new("11111111B", "María", "mrez@gmail.com", "Calle B, Nolandia", "633001122");
             Cliente pedro = new("22222222C", "Pedro", "palvez@gmail.com", "Calle C, Nolandia");

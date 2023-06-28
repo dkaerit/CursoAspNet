@@ -89,10 +89,11 @@ namespace CursoAspNet.a7_tienda
         {
             string resultado = "Carrito de compras:\n";
             resultado += "------------------------------------------------------\n";
-            resultado += "Cant.".PadRight(9);
+            resultado += "Cant.".PadLeft(8);
+            resultado += " ";
             resultado += "Desc.".PadRight(24);
-            resultado += "P.u.".PadRight(9);
-            resultado += "Importe ($)".PadRight(9);
+            resultado += "P.u.".PadLeft(8);
+            resultado += "Importe ($)".PadLeft(12);
             resultado += "\n------------------------------------------------------\n";
 
             foreach (var productoCantidad in ProductosCantidad_)
@@ -103,13 +104,13 @@ namespace CursoAspNet.a7_tienda
 
                 string cantidadStr = cantidad.ToString();
                 string descripcion = producto.Nombre_;
-                string precioUnitario = producto.Precio_.ToString();
-                string importeStr = importe.ToString();
+                string precioUnitario = producto.Precio_.ToString("0.00");
+                string importeStr = importe.ToString("0.00");
 
-                resultado += $"{cantidadStr.PadRight(9)}{descripcion.PadRight(24)}{precioUnitario.PadRight(16)}{importeStr}\n";
+                resultado += $"{cantidadStr.PadLeft(8)} {descripcion.PadRight(24)}{precioUnitario.PadLeft(8)}{importeStr.PadLeft(12)}\n";
             }
 
-            resultado += "----------------------------------------------------\n";
+            resultado += "------------------------------------------------------";
 
             return resultado;
         }

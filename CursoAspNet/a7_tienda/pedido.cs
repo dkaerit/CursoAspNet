@@ -70,7 +70,7 @@ namespace CursoAspNet.a7_tienda
                 Console.WriteLine($"DNI: {Cliente_.Dni_}");
                 Console.WriteLine($"Dirección de entrega: {Cliente_.Direccion_}");
                 Console.WriteLine(Carrito_.MostrarCarrito());
-                Console.WriteLine($"\nTotal: {CalcularTotal()}");
+                Console.WriteLine("Total: ".PadRight(41)+CalcularTotal().ToString("0.00").PadLeft(12));
             }
             else
                 Console.WriteLine("El pedido no ha sido confirmado. No se puede generar la factura.");
